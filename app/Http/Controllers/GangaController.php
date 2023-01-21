@@ -141,4 +141,13 @@ class GangaController extends Controller
 
     }
 
+    public function gangasUsuario() {
+        $gangas = Ganga::where('user_id' , "=" , Auth::id())
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+        $gangas = $gangas ? $gangas : [];
+        return view('welcome', compact('gangas'));
+
+    }
+
 }

@@ -5,8 +5,17 @@
         </li>
         <li class="navbar-text">Nous</li>
         <li class="navbar-text">Destacats</li>
-        <li class="navbar-text">
-            <a href="{{route("gangas.create")}}">Crear ganga</a>
-        </li>
+
+        @if(Auth::check())
+            @if(Auth::check() || (Auth::user()->rol === 'admin'))
+                <li class="navbar-text">
+                    <a href="{{route("gangas.create")}}">Crear ganga</a>
+                </li>
+                <li class="navbar-text">
+                    <a href="{{route("gangas.user")}}">Tus gangas</a>
+                </li>
+            @endif
+        @endif
+
     </ul>
 </nav>

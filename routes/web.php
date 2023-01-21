@@ -35,4 +35,6 @@ Route::resource('gangas', GangaController::class);
 Route::put('/like/{id}', [GangaController::class, 'like'])->name('gangas.like');
 Route::put('/unlike/{id}', [GangaController::class, 'unlike'])->name('gangas.unlike');
 
+Route::get('gangas-user', [GangaController::class, 'gangasUsuario'])->name('gangas.user');
+
 require __DIR__.'/auth.php';
