@@ -19,8 +19,8 @@ class GangaController extends Controller
      */
     public function index()
     {
-        $gangas = Ganga::orderBy('title', 'ASC')
-            ->paginate(10);
+        $gangas = Ganga::where('available', '=', 1)->orderBy('title', 'ASC')
+            ->paginate(5);
         return view('welcome', compact('gangas'));
     }
 
@@ -94,7 +94,8 @@ class GangaController extends Controller
      */
     public function edit(Ganga $ganga)
     {
-        //
+        $categories = Category::all();
+        return view('gangas.edit', compact('categories', 'ganga'));
     }
 
     /**
@@ -104,9 +105,30 @@ class GangaController extends Controller
      * @param  \App\Models\Ganga  $ganga
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ganga $ganga)
+    public function update(GangaRequest $request, $id)
     {
-        //
+        $ganga = Ganga::findOrFail($id);
+        if(Auth::id() == $ganga->user->id || (Auth::user()->rol === 'admin')) {
+            $ganga->title = $request->title;
+            $ganga->description = $request->description;
+            $ganga->url = $request->url;
+            $ganga->price = $request->price;
+            $ganga->price_sale = $request->price_sale;
+            $ganga->category_id = $request->category_id;
+            $ganga->available = $request->available ? 1 : 0;
+            if($request->new_photo) {
+                $imgName = $request->new_photo;
+                $extension = $imgName->getClientOriginalExtension();;
+                $fileName = $ganga->id . "-ganga-severa." . $extension;
+                $ganga->photo = $fileName;
+                $request->new_photo->storeAs('public/img', $fileName);
+
+            }
+
+            $ganga->save();
+            return $this->show($ganga);
+        }
+
     }
 
     /**

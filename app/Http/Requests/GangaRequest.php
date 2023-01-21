@@ -31,7 +31,6 @@ class GangaRequest extends FormRequest
             'price' => 'required|min:0',
             'price_sale' => 'required|min:0',
             'category_id' => 'required',
-            'photo' => 'required'
         ];
     }
 

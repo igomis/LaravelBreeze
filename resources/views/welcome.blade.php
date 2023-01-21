@@ -22,7 +22,6 @@
                         <div class="card-body">
                             <!-- Single item -->
                             @foreach($gangas as $ganga)
-                                @if($ganga->available)
                                 <div class="row">
                                     <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                                         <!-- Image -->
@@ -66,7 +65,6 @@
                                     </div>
                                 </div>
                                     <hr class="my-4" />
-                                @endif
                             @endforeach
 
                         </div>
