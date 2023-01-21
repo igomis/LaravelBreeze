@@ -5,23 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ganga extends Model
+class Votos extends Model
 {
     use HasFactory;
     public function user()
     {
         return $this->belongsTo(User::class, "user_id");
     }
-
-    public function category()
+    public function ganga()
     {
-        return $this->belongsTo(Category::class, "category_id");
+        return $this->belongsTo(Ganga::class, "ganga_id");
     }
-
-    public function votos()
-    {
-        return $this->hasMany(Votos::class);
-    }
-
-
 }
