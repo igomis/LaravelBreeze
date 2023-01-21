@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ganga;
 use App\Models\User;
+use App\Models\Votos;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
@@ -84,7 +85,12 @@ class GangaController extends Controller
      */
     public function show(Ganga $ganga)
     {
-        return view('gangas.show', compact('ganga'));
+        $voto = null;
+        if(Auth::check()) {
+            $voto = Votos::where('user_id', "=", Auth::id())
+                ->where('ganga_id', "=", $ganga->id)->first();
+        }
+        return view('gangas.show', compact('ganga', 'voto'));
     }
 
     /**
@@ -147,18 +153,51 @@ class GangaController extends Controller
 
     public function like(Request $request)
     {
+        $voto = Votos::where('user_id', '=', Auth::id())
+            ->where('ganga_id', '=', $request->id)->first();
         $ganga = Ganga::findOrFail($request->id);
         $ganga->likes++;
+        if($voto) {
+            $voto->vote = true;
+            $ganga->unlikes--;
+        } else {
+            $voto = new Votos();
+            $voto->user_id = Auth::id();
+            $voto->ganga_id = $ganga->id;
+            $voto->vote = true;
+
+        }
         $ganga->save();
+        $voto->save();
+
+
+
         return $this->show($ganga);
 
     }
 
     public function unlike(Request $request)
     {
+
+        $voto = Votos::where('user_id', '=', Auth::id())
+            ->where('ganga_id', '=', $request->id)->first();
         $ganga = Ganga::findOrFail($request->id);
         $ganga->unlikes++;
+        if($voto) {
+            $voto->vote = false;
+            $ganga->likes--;
+        } else {
+            $voto = new Votos();
+            $voto->user_id = Auth::id();
+            $voto->ganga_id = $ganga->id;
+            $voto->vote = false;
+
+        }
         $ganga->save();
+        $voto->save();
+
+
+
         return $this->show($ganga);
 
     }

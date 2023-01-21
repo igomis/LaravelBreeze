@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 @section('titulo', 'Ver Ganga')
 @section('contenido')
-<div class="row">
+<div class="row m-30">
     <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
         <!-- Image -->
         <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
@@ -18,24 +18,69 @@
         <!-- Data -->
         <p class="display-5"><strong>{{$ganga->title}}</strong></p>
         <p class="display-7">{{$ganga->description}}</p>
-        <form method="POST" action="{{route('gangas.like', $ganga->id)}}">
-            @method('PUT')
-            @csrf
-            <button type="submit" class="btn btn-primary btn-sm me-1 mb-2"
-                    title="Like">
-                <i class="bi bi-hand-thumbs-up"></i>
-                <div>{{$ganga->likes}}</div>
-            </button>
-        </form>
-        <form method="POST" action="{{route('gangas.unlike', $ganga->id)}}">
-            @method('PUT')
-            @csrf
-            <button type="submit" class="btn btn-danger btn-sm me-1 mb-2"
-                    title="Like">
-                <i class="bi bi-hand-thumbs-down"></i>
-                <div>{{$ganga->unlikes}}</div>
-            </button>
-        </form>
+        <div class="row">
+            @if($voto)
+                <div class="m-1">
+                    <form method="POST" action="{{route('gangas.like', $ganga->id)}}">
+                        @method('PUT')
+                        @csrf
+                        <button type="submit" class="btn btn-primary btn-sm me-1 mb-2"
+                                title="Like"  @if($voto->vote) disabled @endif>
+                            <i class="bi bi-hand-thumbs-up"></i>
+                            <div>{{$ganga->likes}}</div>
+                        </button>
+                    </form>
+                </div>
+                <div class="m-1">
+                    <form method="POST" action="{{route('gangas.unlike', $ganga->id)}}">
+                        @method('PUT')
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-sm me-1 mb-2"
+                                title="Unlike"  @if(!$voto->vote) disabled @endif>
+                            <i class="bi bi-hand-thumbs-down"></i>
+                            <div>{{$ganga->unlikes}}</div>
+                        </button>
+                    </form>
+                </div>
+                <div class="ml-10" style="transform: translateX(200px)">
+                    <p class="text-start text-right">
+                        <strong><del>{{$ganga->price}}</del></strong>
+                        <strong class="text-danger">{{$ganga->price_sale}}€</strong>
+                    </p>
+                </div>
+            @else
+                <div class="m-1">
+                    <form method="POST" action="{{route('gangas.like', $ganga->id)}}">
+                        @method('PUT')
+                        @csrf
+                        <button type="submit" class="btn btn-primary btn-sm me-1 mb-2"
+                                title="Like" @if(!Auth::check()) disabled @endif>
+                            <i class="bi bi-hand-thumbs-up"></i>
+                            <div>{{$ganga->likes}}</div>
+                        </button>
+                    </form>
+                </div>
+                <div class="m-1">
+                    <form method="POST" action="{{route('gangas.unlike', $ganga->id)}}">
+                        @method('PUT')
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-sm me-1 mb-2"
+                                title="Unlike" @if(!Auth::check()) disabled @endif>
+                            <i class="bi bi-hand-thumbs-down"></i>
+                            <div>{{$ganga->unlikes}}</div>
+                        </button>
+                    </form>
+                </div>
+
+            @endif
+
+
+
+            <!-- Price -->
+
+            <!-- Price -->
+        </div>
+
 
         <!-- Data -->
     </div>
@@ -60,11 +105,7 @@
 
         <!-- Quantity -->
 
-        <!-- Price -->
-        <p class="text-start text-md-center">
-            <strong>{{$ganga->price_sale}}</strong>
-        </p>
-        <!-- Price -->
+
     </div>
 </div>
 @endsection

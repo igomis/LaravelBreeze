@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('url');
-            $table->integer('likes')->unsigned()->default(0);
-            $table->integer('unlikes')->unsigned()->default(0);
+            $table->bigInteger('likes')->unsigned()->default(0);
+            $table->bigInteger('unlikes')->unsigned()->default(0);
             $table->decimal('price')->unsigned();
             $table->decimal('price_sale')->unsigned();
             $table->boolean('available');
