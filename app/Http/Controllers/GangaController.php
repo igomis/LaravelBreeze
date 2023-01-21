@@ -122,7 +122,6 @@ class GangaController extends Controller
                 $fileName = $ganga->id . "-ganga-severa." . $extension;
                 $ganga->photo = $fileName;
                 $request->new_photo->storeAs('public/img', $fileName);
-
             }
 
             $ganga->save();
@@ -163,13 +162,20 @@ class GangaController extends Controller
 
     }
 
-    public function gangasUsuario() {
+    public function gangasUsuario()
+    {
         $gangas = Ganga::where('user_id' , "=" , Auth::id())
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
         $gangas = $gangas ? $gangas : [];
         return view('welcome', compact('gangas'));
+    }
 
+    public function nuevasGangas()
+    {
+        $gangas = Ganga::orderBy('created_at', 'DESC')
+            ->paginate(10);
+        return view('welcome', compact('gangas'));
     }
 
 }

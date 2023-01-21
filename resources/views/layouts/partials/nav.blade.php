@@ -3,7 +3,9 @@
         <li class="navbar-text">
             <a href="{{route("gangas.index")}}">Inici</a>
         </li>
-        <li class="navbar-text">Nous</li>
+        <li class="navbar-text">
+            <a href="{{route("gangas.nuevas")}}">Nous</a>
+        </li>
         <li class="navbar-text">Destacats</li>
 
         @if(Auth::check())
@@ -12,7 +14,7 @@
                     <a href="{{route("gangas.create")}}">Crear ganga</a>
                 </li>
                 <li class="navbar-text">
-                    <a href="{{route("gangas.user")}}">Tus gangas</a>
+                    <a href="{{route("gangas.user")}}">Les teues ganges</a>
                 </li>
             @endif
         @endif
