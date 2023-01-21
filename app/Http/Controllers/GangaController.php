@@ -182,4 +182,12 @@ class GangaController extends Controller
         return view('gangas.newsGangas', compact('gangas', "title"));
     }
 
+    public function mejoresGangas()
+    {
+        $gangas = Ganga::orderByRaw('likes - unlikes desc')
+            ->paginate(5);
+        $title = "Ganges destacades";
+        return view('gangas.bestGangas', compact('gangas', "title"));
+    }
+
 }

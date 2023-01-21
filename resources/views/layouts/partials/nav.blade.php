@@ -6,7 +6,9 @@
         <li class="navbar-text p-4">
             <a href="{{route("gangas.nuevas")}}">Nous</a>
         </li>
-        <li class="navbar-text p-4">Destacats</li>
+        <li class="navbar-text p-4">
+            <a href="{{route("gangas.mejores")}}">Destacats</a>
+        </li>
 
         @if(Auth::check())
             @if(Auth::check() || (Auth::user()->rol === 'admin'))

@@ -37,5 +37,6 @@ Route::put('/unlike/{id}', [GangaController::class, 'unlike'])->name('gangas.unl
 
 Route::get('gangas-user', [GangaController::class, 'gangasUsuario'])->name('gangas.user');
 Route::get('gangas-news', [GangaController::class, 'nuevasGangas'])->name('gangas.nuevas');
+Route::get('gangas-best', [GangaController::class, 'mejoresGangas'])->name('gangas.mejores');
 
 require __DIR__.'/auth.php';
