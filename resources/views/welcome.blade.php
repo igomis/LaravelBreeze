@@ -2,20 +2,21 @@
 @section('titulo', 'Inici')
 @section('contenido')
         @if (Route::has('login'))
-            <div class="float-end top-0 right-0 px-6 py-4 pt-4 navbar navbar-dark bg-dark">
+            <div class="float-right navbar-dark" style="height:100px; transform: translateY(-60px); position: sticky; top: 130px; z-index: 11">
                 @auth
-                    <a class="navbar-text" href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{auth()->user()->name}}</a>
-                    <a class="navbar-text" href="{{ route('logout.get') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
+                    <a class="navbar-text" href="{{ url('/dashboard') }}">{{auth()->user()->name}}</a>
+                    <a class="navbar-text" href="{{ route('logout.get') }}">Logout</a>
 
                 @else
-                    <a class="navbar-text" href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                    <a class="navbar-text m-2" href="{{ route('login') }}">Log in</a>
 
                     @if (Route::has('register'))
-                        <a class="navbar-text" href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        <a class="navbar-text" href="{{ route('register') }}">Register</a>
                     @endif
                 @endauth
             </div>
         @endif
+
     <section class="h-100 gradient-custom">
         <div class="container py-5">
             <div class="row d-flex justify-content-center my-4">
@@ -41,9 +42,6 @@
                                         <!-- Data -->
                                         <p class="display-5"><strong>{{$ganga->title}}</strong></p>
                                         <p class="display-7">{{$ganga->description}}</p>
-
-
-
                                         <!-- Data -->
                                     </div>
 
@@ -54,10 +52,9 @@
                                         </div>
                                         <div class="d-flex mb-4" style="max-width: 300px">
                                             <button class="btn btn-warning">
-                                                <a href="{{route("gangas.show", $ganga)}}">Ver</a>
+                                                <a href="{{route("gangas.show", $ganga)}}"><i class="bi bi-eye"></i></a>
                                             </button>
                                         </div>
-                                        <!-- Quantity -->
 
                                         <!-- Price -->
                                         <p class="text-start text-md-center">
@@ -72,6 +69,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="d-flex justify-content-center">
                 {{$gangas->links()}}
             </div>
         </div>

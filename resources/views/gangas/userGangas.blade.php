@@ -40,7 +40,7 @@
                                         </div>
                                         <div class="d-flex mb-4" style="max-width: 300px">
                                             <button class="btn btn-primary">
-                                                <a class="text-light" href="{{route("gangas.show", $ganga)}}">Ver</a>
+                                                <a class="text-light" href="{{route("gangas.show", $ganga)}}"><i class="bi bi-eye"></i></a>
                                             </button>
 
                                         <button class="btn btn-warning">
@@ -49,7 +49,7 @@
                                         <form action="{{route('gangas.destroy', $ganga)}}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <button class="btn btn-danger">Borrar</button>
+                                            <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                         </form>
                                         </div>
 
@@ -66,8 +66,12 @@
                         </div>
                     </div>
                 </div>
+
+            </div>
+            <div class="d-flex justify-content-center">
                 {{$gangas->links()}}
             </div>
+
         </div>
     </section>
 @endsection

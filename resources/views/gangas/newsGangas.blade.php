@@ -40,7 +40,7 @@
                                         </div>
                                         <div class="d-flex mb-4" style="max-width: 300px">
                                             <button class="btn btn-warning">
-                                                <a href="{{route("gangas.show", $ganga)}}">Ver</a>
+                                                <a href="{{route("gangas.show", $ganga)}}"><i class="bi bi-eye"></i></a>
                                             </button>
                                         </div>
                                         <!-- Quantity -->
@@ -58,6 +58,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="d-flex justify-content-center">
                 {{$gangas->links()}}
             </div>
         </div>

@@ -48,12 +48,12 @@
         @if(Auth::check())
             @if(Auth::id() == $ganga->user->id || (Auth::user()->rol === 'admin'))
                 <button class="btn btn-warning">
-                    <a href="{{route('gangas.edit', $ganga)}}">Editar</a>
+                    <a href="{{route('gangas.edit', $ganga)}}"><i class="bi bi-pencil"></i></a>
                 </button>
                 <form action="{{route('gangas.destroy', $ganga)}}" method="POST">
                     @method('DELETE')
                     @csrf
-                    <button class="btn btn-danger">Borrar</button>
+                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                 </form>
             @endif
         @endif

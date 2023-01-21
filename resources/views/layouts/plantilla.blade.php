@@ -16,11 +16,13 @@
 </head>
 <body class="antialiased">
     <div class="container">
-        <div class="row">
+        <div class="row bg-dark" style="position: sticky; top:0px; z-index: 10">
             @include('layouts.partials.header')
             @include('layouts.partials.nav')
+
         </div>
-    @yield('contenido')
+        @yield('contenido')
+
     @include('layouts.partials.footer')
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
