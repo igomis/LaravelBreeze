@@ -42,12 +42,7 @@
                         </button>
                     </form>
                 </div>
-                <div class="ml-10" style="transform: translateX(200px)">
-                    <p class="text-start text-right">
-                        <strong><del>{{$ganga->price}}</del></strong>
-                        <strong class="text-danger">{{$ganga->price_sale}}€</strong>
-                    </p>
-                </div>
+
             @else
                 <div class="m-1">
                     <form method="POST" action="{{route('gangas.like', $ganga->id)}}">
@@ -73,6 +68,12 @@
                 </div>
 
             @endif
+                <div class="ml-10" style="transform: translateX(200px)">
+                    <p class="text-start text-right">
+                        <strong><del>{{$ganga->price}}</del></strong>
+                        <strong class="text-danger">{{$ganga->price_sale}}€</strong>
+                    </p>
+                </div>
 
 
 
