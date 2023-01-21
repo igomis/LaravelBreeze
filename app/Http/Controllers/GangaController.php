@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ganga;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
@@ -164,18 +165,21 @@ class GangaController extends Controller
 
     public function gangasUsuario()
     {
+        $user = User::findOrFail(Auth::id());
         $gangas = Ganga::where('user_id' , "=" , Auth::id())
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
         $gangas = $gangas ? $gangas : [];
-        return view('welcome', compact('gangas'));
+        $title = "Ganges de " . $user->name;
+        return view('gangas.userGangas', compact('gangas', "title"));
     }
 
     public function nuevasGangas()
     {
         $gangas = Ganga::orderBy('created_at', 'DESC')
             ->paginate(10);
-        return view('welcome', compact('gangas'));
+        $title = "Noves Ganges";
+        return view('gangas.newsGangas', compact('gangas', "title"));
     }
 
 }
