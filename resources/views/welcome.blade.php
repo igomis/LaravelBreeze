@@ -4,7 +4,9 @@
         @if (Route::has('login'))
             <div class="float-end top-0 right-0 px-6 py-4 pt-4 navbar navbar-dark bg-dark">
                 @auth
-                    <a class="navbar-text" href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                    <a class="navbar-text" href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{auth()->user()->name}}</a>
+                    <a class="navbar-text" href="{{ route('logout.get') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
+
                 @else
                     <a class="navbar-text" href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
