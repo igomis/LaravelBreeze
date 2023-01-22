@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GangaController;
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('gangas', GangaController::class);
+Route::resource('categories', CategoryController::class);
 
 Route::put('/like/{id}', [GangaController::class, 'like'])->name('gangas.like');
 Route::put('/unlike/{id}', [GangaController::class, 'unlike'])->name('gangas.unlike');

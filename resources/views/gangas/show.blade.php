@@ -7,9 +7,6 @@
         <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
             <img src="{{ asset('storage/img/' . $ganga->photo) }}"
                  class="w-100" alt="{{$ganga->title}}" />
-            <a href="#!">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
-            </a>
         </div>
         <!-- Image -->
     </div>
@@ -74,16 +71,7 @@
                         <strong class="text-danger">{{$ganga->price_sale}}€</strong>
                     </p>
                 </div>
-
-
-
-            <!-- Price -->
-
-            <!-- Price -->
         </div>
-
-
-        <!-- Data -->
     </div>
 
     <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
