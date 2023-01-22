@@ -20,7 +20,7 @@
                 </li>
             @endif
         @endif
-        @if((Auth::user()->rol === 'admin'))
+        @if(Auth::check() && (Auth::user()->rol === 'admin'))
             <li class="navbar-text p-3">
                 <a href="{{route('categories.index')}}">Categories</a>
             </li>
