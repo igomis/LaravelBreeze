@@ -2,7 +2,7 @@
 @section('titulo', 'Crear Ganga')
 @section('contenido')
     <div class="row">
-        <h1 class="col-12 text-center display-4">Nueva Ganga</h1>
+        <h1 class="text-center display-4">Nueva Ganga</h1>
     </div>
     <div class="row bg-gray-100">
     <form class="offset-3 mt-4 col-5" enctype="multipart/form-data" action="{{ route('gangas.store') }}" method='POST'>

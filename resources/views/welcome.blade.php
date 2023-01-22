@@ -57,9 +57,12 @@
                                         </div>
 
                                         <!-- Price -->
-                                        <p class="text-start text-md-center">
-                                            <strong>{{$ganga->price_sale}}</strong>
-                                        </p>
+
+                                            <p class="text-start text-right">
+                                                <strong><del>{{$ganga->price}}</del></strong>
+                                                <strong class="text-danger">{{$ganga->price_sale}}€</strong>
+                                            </p>
+
                                         <!-- Price -->
                                     </div>
                                 </div>

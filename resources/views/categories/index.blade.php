@@ -1,9 +1,9 @@
 @extends('layouts.plantilla')
-@section('titulo', 'Best-Gangas')
+@section('titulo', 'Categories')
 @section('contenido')
     <h1 class="text-center display-4">Categorías</h1>
     <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="col-sm-8 col-md-8 col-lg-8">
             <table class="table table-striped table-hover table-responsive">
                 <thead class="bg-dark">
                 <tr class="text-white text-center">
@@ -26,7 +26,7 @@
                         <td>{{$category->name}}</td>
                         <td>
                             <button class="btn btn-warning">
-                                <a href="{{route('categories.edit', $category)}}"><i class="bi bi-pencil"></i></a>
+                                <a href="{{route('categories.edit', $category->id)}}"><i class="bi bi-pencil"></i></a>
                             </button>
                             <form action="{{route('categories.destroy', $category)}}" method="POST">
                                 @method('DELETE')
@@ -39,6 +39,10 @@
                 @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="col-4">
+            @include('categories.create')
+
         </div>
     </div>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -36,7 +37,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category();
+        $category->name = $request->name;
+        $category->image = "";
+        $category->save();
+
+        $imgName = $request->photo;
+
+        $category->save();
+
+
+        $extension = $imgName->getClientOriginalExtension();;
+        $fileName = $category->id . "-category." . $extension;
+        $category->image = $fileName;
+
+
+        $category->save();
+        $request->photo->storeAs('public/img', $fileName);
+        return $this->index();
     }
 
     /**
@@ -58,7 +76,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -68,9 +86,24 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+
+        if(Auth::user()->rol === 'admin') {
+            $category = Category::findOrFail($id);
+            $category->name = $request->name;
+            if($request->new_photo) {
+                $imgName = $request->new_photo;
+                $extension = $imgName->getClientOriginalExtension();;
+                $fileName = $category->id . "-category." . $extension;
+                $category->image = $fileName;
+                $request->new_photo->storeAs('public/img', $fileName);
+            }
+            $category->save();
+        }
+        return $this->index();
+
+
     }
 
     /**
@@ -81,6 +114,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return $this->index();
     }
 }
